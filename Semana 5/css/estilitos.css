@@ -1,0 +1,233 @@
+/* --- VARIABLES Y CONFIGURACIÓN BÁSICA --- */
+:root {
+    --bg-primary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-main: #212529;
+    --text-muted: #495057;
+    --accent: #0d6efd;
+    --accent-hover: #0a58ca;
+    --border-color: #dee2e6;
+    --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Enfoque accesible para la navegación por teclado */
+a:focus, button:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* --- ENCABEZADO Y NAVEGACIÓN --- */
+header {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.profile-area {
+    text-align: center;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover; /* Asegura que la foto no se distorsione */
+    background-color: var(--border-color); /* Fondo gris de respaldo si no carga la imagen */
+    margin-bottom: 15px;
+    border: 3px solid var(--accent);
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* --- NAVEGACIÓN (Por defecto: Móvil / Menos de 600px) --- */
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Menú vertical en móviles */
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+nav a {
+    display: block;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+nav a:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* --- CONTENIDO PRINCIPAL Y PROYECTOS --- */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* Grid de proyectos (Por defecto: 1 columna / Móvil) */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px;
+}
+
+.project-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.project-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.project-link {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+    color: var(--accent-hover);
+}
+
+/* --- RESPONSIVE: PANTALLAS MEDIANAS (600px a 1024px) --- */
+@media (min-width: 600px) and (max-width: 1024px) {
+    body {
+        padding: 30px;
+    }
+
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    nav ul {
+        flex-direction: row; /* Menú cambia a horizontal */
+        gap: 20px;
+    }
+
+    nav a {
+        background-color: transparent;
+        padding: 5px 10px;
+    }
+
+    /* Proyectos organizados en 2 columnas */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.7rem; }
+}
+
+/* --- RESPONSIVE: PANTALLAS GRANDES (Más de 1024px) --- */
+@media (min-width: 1025px) {
+    body {
+        padding: 40px;
+    }
+
+    /* Imagen de perfil a la izquierda, contenido a la derecha */
+    .header-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .profile-area {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 25px;
+    }
+
+    .avatar {
+        margin-bottom: 0; /* Centrado perfecto horizontal */
+    }
+
+    nav ul {
+        flex-direction: row;
+        gap: 25px;
+    }
+
+    nav a {
+        background-color: transparent;
+    }
+
+    /* Proyectos organizados en 3 columnas */
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+}
